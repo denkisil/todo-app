@@ -57,13 +57,3 @@ After building you can launch app using
 ```bash
 yarn run start:prod
 ```
-
-# Todo
-
-[ ] Complete coding tests
-
-[ ] Make documentation
-
-[ ] Adding an authentication system
-
-[ ] Developing the client (optional)
