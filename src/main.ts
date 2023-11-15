@@ -1,12 +1,15 @@
 import { HttpAdapterHost, NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
-import { AllExceptionsFilter } from "./services/exception.service";
+import { ZodExceptionFilter } from "./errorfilters/zod.exceptionfilter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+  const httpAdapterHost = app.get(HttpAdapterHost);
+  app.useGlobalFilters(
+    new ZodExceptionFilter()
+    // new AllExceptionsFilter(httpAdapterHost)
+  );
 
   await app.listen(3000);
 }

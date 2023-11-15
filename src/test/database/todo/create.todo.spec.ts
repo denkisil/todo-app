@@ -1,4 +1,4 @@
-import TodoModel from "../../database/todo.model";
+import TodoModel from "../../../database/todo.model";
 import { PrismaClient } from "@prisma/client";
 
 describe("Todo Model", () => {

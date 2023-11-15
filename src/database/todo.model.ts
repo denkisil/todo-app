@@ -1,7 +1,6 @@
 import { Prisma, Todo } from "@prisma/client";
-import BaseModel, { IBaseModel } from "./base.model";
 import { Injectable } from "@nestjs/common";
-import { PrismaService } from "../services/prisma.service";
+import { PrismaService } from "services/prisma.service";
 
 @Injectable()
 export default class TodoModel {
@@ -22,8 +21,13 @@ export default class TodoModel {
     return await this.client.todo.delete({ where });
   }
 
-  async findMany(offset: number, page: number): Promise<Todo[]> {
+  async findMany(
+    offset: number,
+    page: number,
+    where?: Prisma.TodoWhereInput
+  ): Promise<Todo[]> {
     return await this.client.todo.findMany({
+      where: where ? where : {},
       skip: offset && page ? offset * page : 0,
       take: offset ? offset : 50
     });

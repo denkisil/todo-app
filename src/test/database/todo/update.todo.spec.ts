@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import TodoModel from "../../database/todo.model";
-
-// test update todo
+import TodoModel from "../../../database/todo.model";
 
 describe("Todo Model", () => {
   const todoModel = new TodoModel(new PrismaClient());

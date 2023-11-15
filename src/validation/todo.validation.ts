@@ -1,19 +1,17 @@
-import { ITodoDTO } from "../DTO/todo.dto";
+import { todo } from "./defaults/";
 import { z } from "zod";
 
 export const TodoCreate = z
   .object({
-    title: z.string().min(5),
-    description: z.string().min(10),
-    deadline: z.string().datetime().optional()
+    ...todo
   })
   .strict();
 
 export const TodoUpdate = z.object({
-  title: z.string().min(5).optional(),
-  description: z.string().min(10).optional(),
-  deadline: z.string().datetime().optional(),
-  done: z.boolean().optional()
+  title: todo.title.optional(),
+  description: todo.description.optional(),
+  deadline: todo.deadline,
+  done: todo.done.optional()
 });
 
 export type TodoCreate = z.infer<typeof TodoCreate>;

@@ -6,19 +6,15 @@ export interface ITodoDTO {
   deadline?: Date;
   done: boolean;
 
+  userId?: string;
+
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface ITodoCreateDTO {
-  title: string;
-  description: string;
-  deadline?: string;
-}
+export interface ITodoCreateDTO
+  extends Pick<ITodoDTO, "title" | "description" | "deadline" | "userId"> {}
 
-export interface ITodoUpdateDTO {
-  title?: string;
-  description?: string;
-  deadline?: string;
+export interface ITodoUpdateDTO extends Partial<ITodoCreateDTO> {
   done?: boolean;
 }

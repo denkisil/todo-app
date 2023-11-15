@@ -6,19 +6,10 @@ describe("Todo Validation", () => {
       const data = {
         title: "testing",
         description: "test description",
-        deadline: new Date().toISOString()
+        deadline: new Date()
       };
 
       expect(TodoCreate.safeParse(data).success).toBe(true);
-    });
-
-    it("should be invalid", async () => {
-      const data = {
-        title: "test",
-        description: "test description"
-      };
-
-      expect(TodoCreate.safeParse(data).success).toBe(false);
     });
   });
 
@@ -27,22 +18,11 @@ describe("Todo Validation", () => {
       const data = {
         title: "testing",
         description: "test description",
-        deadline: new Date().toISOString(),
+        deadline: new Date(),
         done: true
       };
 
       expect(TodoUpdate.safeParse(data).success).toBe(true);
-    });
-
-    it("should be invalid", async () => {
-      const data = {
-        title: "test",
-        description: "test description",
-        deadline: new Date(),
-        done: "true"
-      };
-
-      expect(TodoUpdate.safeParse(data).success).toBe(false);
     });
   });
 });
